@@ -1,15 +1,18 @@
-#include "utils3d.h"
+#include "kqt3d.h"
 
 #include <QQuickWindow>
 
-#include "utils.h"
+#include "kqtcore3d/kqtcore3d.h"
 
 
-namespace render3d {
+namespace kqt3d {
 
-void render3dInit()
+void kqt3dInit()
 {
-    LOGD << "init graphic api";
+    LOG << "init core 3d";
+    kqtcore3d::kqtcore3dInit(kqtcore3d::RendererApi::OpenGL);
+
+    LOG << "init graphic api";
     QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
     QSurfaceFormat fmt;
     fmt.setVersion(3, 3);

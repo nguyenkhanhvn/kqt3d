@@ -1,0 +1,3 @@
+[submodule "kqtcore3d"]
+	path = kqtcore3d
+	url = https://github.com/nguyenkhanhvn/kqtcore3d.git
