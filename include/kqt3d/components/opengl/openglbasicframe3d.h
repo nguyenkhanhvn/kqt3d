@@ -22,7 +22,6 @@ signals:
     void clearColorChanged();
 
 protected:
-    QSharedPointer<kqt3d::BasicPerspectiveCamera> m_camera = nullptr;
     QSharedPointer<OpenGLBasicFrameRenderCallback> m_basicFrameRenderCallback;
 
 };

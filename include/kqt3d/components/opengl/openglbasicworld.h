@@ -27,11 +27,13 @@ public:
     virtual void scale(float factor) override;
 
 
-    void addModel(QSharedPointer<OpenGLBasicModel> model);
-    int removeModel(QSharedPointer<OpenGLBasicModel> model);
+    virtual void destroy();
 
-    void setAttribLayout(QSharedPointer<kqtcore3d::ShaderProgram> program);
-    void render(QSharedPointer<kqtcore3d::ShaderProgram> program, const char *worldUniform, const char *modelUniform, kqtcore3d::RenderCallback callback = {});
+    virtual void addModel(QSharedPointer<OpenGLBasicModel> model);
+    virtual int removeModel(QSharedPointer<OpenGLBasicModel> model);
+
+    virtual void setAttribLayout(QSharedPointer<kqtcore3d::ShaderProgram> program);
+    virtual void render(QSharedPointer<kqtcore3d::ShaderProgram> program, const char *worldUniform, const char *modelUniform, kqtcore3d::RenderCallback callback = {});
 
 protected:
     QMatrix4x4 m_transformationMatrix;

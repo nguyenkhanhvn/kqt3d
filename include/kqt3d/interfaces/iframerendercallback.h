@@ -6,6 +6,7 @@ namespace kqt3d {
 class IFrameRenderCallback {
 public:
     virtual void init() {}
+    virtual void destroy() {}
 
     virtual void beforeRender() {}
     virtual void render() {}

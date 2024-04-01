@@ -28,12 +28,17 @@ bool ModelVector::init(kqtcore3d::RenderCallback callback)
     return result & m_lineMesh->init();
 }
 
+void ModelVector::destroy()
+{
+    OpenGLBasicModel::destroy();
+    m_lineMesh->destroy();
+}
+
 void ModelVector::render(QSharedPointer<kqtcore3d::ShaderProgram> program, const char *modelUniform, kqtcore3d::RenderCallback callback)
 {
     OpenGLBasicModel::render(program, modelUniform, callback);
 
     program->setUniformValue(modelUniform, m_lineMesh->getTransformationMatrix());
-//    m_lineMesh->drawArrays(GL_LINES, 0, 2);
     m_lineMesh->drawElements(GL_LINES, m_lineMesh->indices()->getSize(), 0, callback);
 }
 

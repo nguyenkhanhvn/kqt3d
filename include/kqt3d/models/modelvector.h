@@ -15,6 +15,7 @@ public:
 
     // OpenGLBasicModel interface
     virtual bool init(kqtcore3d::RenderCallback callback = {}) override;
+    virtual void destroy() override;
     virtual void render(QSharedPointer<kqtcore3d::ShaderProgram> program, const char *modelUniform, kqtcore3d::RenderCallback callback = {}) override;
     virtual void setAttribLayout(QSharedPointer<kqtcore3d::ShaderProgram> program) override;
 

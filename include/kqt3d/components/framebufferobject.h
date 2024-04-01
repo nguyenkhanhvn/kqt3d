@@ -2,10 +2,6 @@
 #define FRAMEBUFFEROBJECT_H
 
 #include <QQuickFramebufferObject>
-#include <QOpenGLFunctions>
-#include <QOpenGLShaderProgram>
-#include <QOpenGLVertexArrayObject>
-#include <QOpenGLBuffer>
 
 #include "kqt3d/interfaces/iframerendercallback.h"
 
@@ -30,6 +26,7 @@ class FramebufferObjectRenderer : public QQuickFramebufferObject::Renderer
 
 public:
     FramebufferObjectRenderer(QSharedPointer<IFrameRenderCallback> frameRendererCallback);
+    ~FramebufferObjectRenderer();
 
     virtual void render() override;
     virtual QOpenGLFramebufferObject *createFramebufferObject(const QSize &size) override;

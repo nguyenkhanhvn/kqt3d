@@ -12,9 +12,10 @@ namespace kqt3d {
 class OpenGLBasicFrameRenderCallback: public IFrameRenderCallback, public QOpenGLFunctions
 {
 public:
-    OpenGLBasicFrameRenderCallback();
+    explicit OpenGLBasicFrameRenderCallback();
 
     virtual void init() override;
+    virtual void destroy() override;
     virtual void beforeRender() override;
 
     QSharedPointer<kqtcore3d::ShaderProgram> program();
@@ -23,6 +24,7 @@ public:
     QColor clearColor = "white";
 
 protected:
+    QSharedPointer<kqt3d::BasicPerspectiveCamera> m_camera = nullptr;
     QSharedPointer<kqtcore3d::ShaderProgram> m_program = nullptr;
 };
 

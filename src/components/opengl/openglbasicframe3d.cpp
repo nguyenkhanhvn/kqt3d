@@ -5,7 +5,6 @@ namespace kqt3d {
 OpenGLBasicFrame3d::OpenGLBasicFrame3d(QSharedPointer<OpenGLBasicFrameRenderCallback> callback) :
     FramebufferObject(callback), m_basicFrameRenderCallback(callback)
 {
-    m_camera = QSharedPointer<kqt3d::BasicPerspectiveCamera>::create();
 }
 
 QColor OpenGLBasicFrame3d::clearColor() const

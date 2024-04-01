@@ -4,12 +4,18 @@ namespace kqt3d {
 
 OpenGLBasicFrameRenderCallback::OpenGLBasicFrameRenderCallback()
 {
+    m_camera = QSharedPointer<kqt3d::BasicPerspectiveCamera>::create();
 }
 
 void OpenGLBasicFrameRenderCallback::init()
 {
     initializeOpenGLFunctions();
     m_program = kqtcore3d::ShaderProgram::create();
+}
+
+void OpenGLBasicFrameRenderCallback::destroy()
+{
+    m_program = nullptr;
 }
 
 void OpenGLBasicFrameRenderCallback::beforeRender()

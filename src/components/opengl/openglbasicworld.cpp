@@ -90,6 +90,11 @@ void OpenGLBasicWorld::scale(float factor)
     m_transformationMatrix.scale(factor);
 }
 
+void OpenGLBasicWorld::destroy()
+{
+    ALL_MODELS_DO_FUNCTION(destroy)
+}
+
 void OpenGLBasicWorld::addModel(QSharedPointer<OpenGLBasicModel> model)
 {
     m_models.append(model);

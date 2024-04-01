@@ -29,6 +29,11 @@ FramebufferObjectRenderer::FramebufferObjectRenderer(QSharedPointer<IFrameRender
     m_frameRendererCallback->init();
 }
 
+FramebufferObjectRenderer::~FramebufferObjectRenderer()
+{
+    m_frameRendererCallback->destroy();
+}
+
 void FramebufferObjectRenderer::render()
 {
     m_frameRendererCallback->beforeRender();
