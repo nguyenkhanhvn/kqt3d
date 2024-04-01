@@ -10,8 +10,8 @@ namespace kqt3d {
 class ModelVector : public OpenGLBasicModel
 {
 public:
-    ModelVector(QVector3D tail = {0, -1, 0}, QVector3D head = {0, 0, 0}, QColor color = "white", float scale = 1);
-    ModelVector(int length = 1, QVector3D direction = {0, 1, 0}, QVector3D startPoint = {0, 0, 0}, QColor color = "white", float scale = 1);
+    ModelVector(QVector3D tail = {0, -1, 0}, QVector3D head = {0, 0, 0}, QColor color = "white", float size = 0.2);
+    ModelVector(int length = 1, QVector3D direction = {0, 1, 0}, QVector3D startPoint = {0, 0, 0}, QColor color = "white", float size = 0.2);
 
     // OpenGLBasicModel interface
     virtual bool init(kqtcore3d::RenderCallback callback = {}) override;
@@ -21,6 +21,7 @@ public:
 
     void setTail(QVector3D tail);
     void setHead(QVector3D head);
+    void setSize(float size);
 
     // keep tail, move head to (tail+vector)
     void setDirection(QVector3D direction);
@@ -42,11 +43,12 @@ protected:
     virtual void scale(float factor) override {OpenGLBasicModel::scale(factor);}
 
 private:
-    void createMesh(QColor color, float scale);
+    void createMesh(QColor color);
 
 private:
     QVector3D m_tail;
     QVector3D m_head;
+    float m_size;
     QSharedPointer<OpenGLBasicMesh> m_headMesh = nullptr;
     QSharedPointer<OpenGLBasicMesh> m_lineMesh = nullptr;
 

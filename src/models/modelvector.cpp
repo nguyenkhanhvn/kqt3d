@@ -6,19 +6,19 @@
 
 namespace kqt3d {
 
-ModelVector::ModelVector(QVector3D tail, QVector3D head, QColor color, float scale) :
-    OpenGLBasicModel(), m_tail(tail), m_head(head)
+ModelVector::ModelVector(QVector3D tail, QVector3D head, QColor color, float size) :
+    OpenGLBasicModel(), m_tail(tail), m_head(head), m_size(size)
 {
-    createMesh(color, scale);
+    createMesh(color);
     calculateTransformationMatrix();
 }
 
-ModelVector::ModelVector(int length, QVector3D direction, QVector3D startPoint, QColor color, float scale) :
-    OpenGLBasicModel()
+ModelVector::ModelVector(int length, QVector3D direction, QVector3D startPoint, QColor color, float size) :
+    OpenGLBasicModel(), m_size(size)
 {
     m_tail = startPoint;
     m_head = m_tail + direction;
-    createMesh(color, scale);
+    createMesh(color);
     calculateTransformationMatrix();
 }
 
@@ -60,6 +60,12 @@ void ModelVector::setHead(QVector3D head)
     calculateTransformationMatrix();
 }
 
+void ModelVector::setSize(float size)
+{
+    m_size = size;
+    m_headMesh->setScale(m_head.distanceToPoint(m_tail)*0.2);
+}
+
 void ModelVector::setDirection(QVector3D direction)
 {
     m_head = m_tail + direction;
@@ -75,9 +81,10 @@ void ModelVector::calculateTransformationMatrix()
     m_headMesh->setTransformationMatrix(transformation);
     m_lineMesh->setTransformationMatrix(transformation);
     m_lineMesh->setScale(m_head.distanceToPoint(m_tail));
+    m_headMesh->setScale(m_head.distanceToPoint(m_tail)*0.2);
 }
 
-void ModelVector::createMesh(QColor color, float scale)
+void ModelVector::createMesh(QColor color)
 {
     QVector4D arrowColor = {color.redF(), color.greenF(), color.blueF(), color.alphaF()};
     m_headMesh = QSharedPointer<OpenGLBasicMesh>::create(
@@ -134,7 +141,6 @@ void ModelVector::createMesh(QColor color, float scale)
             1, 6, 7,
             1, 7, 2,
         }));
-    m_headMesh->setScale(scale);
 
 
     m_lineMesh = QSharedPointer<OpenGLBasicMesh>::create(
