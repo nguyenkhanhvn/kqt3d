@@ -1,3 +1,6 @@
 [submodule "kqtcore3d"]
 	path = kqtcore3d
 	url = https://github.com/nguyenkhanhvn/kqtcore3d.git
+[submodule "3rdparty/assimp"]
+	path = 3rdparty/assimp
+	url = https://github.com/assimp/assimp.git

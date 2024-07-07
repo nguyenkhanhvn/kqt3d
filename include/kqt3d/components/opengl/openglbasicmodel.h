@@ -12,7 +12,8 @@ class OpenGLBasicModel : public kqtcore3d::OpenGLModel
 {
 public:
     // accept BasicMesh, otherwise, other function will not work
-    OpenGLBasicModel(const QVector<QSharedPointer<kqtcore3d::BaseMesh>> &meshes = QVector<QSharedPointer<kqtcore3d::BaseMesh>>());
+    OpenGLBasicModel(const QVector<QSharedPointer<kqtcore3d::BaseMesh>> &meshes = QVector<QSharedPointer<kqtcore3d::BaseMesh>>(), QSharedPointer<kqtcore3d::IModelImporter> importer = nullptr);
+    OpenGLBasicModel(QSharedPointer<kqtcore3d::IModelImporter> importer);
 
     virtual void render(QSharedPointer<kqtcore3d::ShaderProgram> program, const char *modelUniform, kqtcore3d::RenderCallback callback = {});
 

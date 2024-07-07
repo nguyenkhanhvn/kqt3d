@@ -9,9 +9,9 @@ BasicPerspectiveCamera::BasicPerspectiveCamera(QVector3D position, QVector3D ori
     m_orientation.normalize();
 }
 
-void BasicPerspectiveCamera::resize(QRectF newSize)
+void BasicPerspectiveCamera::resize(float width, float height)
 {
-    setupPerspective(m_verticalAngle, newSize.width() / newSize.height(), m_nearPlane, m_farPlane);
+    setupPerspective(m_verticalAngle, width / height, m_nearPlane, m_farPlane);
 }
 
 void BasicPerspectiveCamera::inputControl(int key)

@@ -16,6 +16,22 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "MinSiz
     add_definitions(-DQT_NO_DEBUG_OUTPUT)
 endif()
 
+# assimp
+CONFIGURE_FILE(
+  ${CMAKE_CURRENT_LIST_DIR}/3rdparty/assimp/include/assimp/config.h.in
+  ${PROJECT_SOURCE_DIR}/include/assimp/config.h
+)
+include_directories(3rdparty/assimp/include)
+SET(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
+SET(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+SET(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+SET(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
+SET(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT ON CACHE BOOL "" FORCE)
+#SET(ASSIMP_BUILD_GLTF_IMPORTER ON CACHE BOOL "" FORCE)
+# SET(ASSIMP_BUILD_PLY_IMPORTER ON CACHE BOOL "" FORCE)
+add_definitions(-DASSIMP_BUILD_NO_GLTF1_IMPORTER)
+add_subdirectory(3rdparty/assimp)
+
 include_directories(kqtcore3d/include)
 add_subdirectory(kqtcore3d)
 
@@ -30,12 +46,12 @@ add_library(kqt3d STATIC
 
 include_directories(include)
 
-target_include_directories(kqt3d PRIVATE include/kqt3d include/kqt3d/interfaces include/kqt3d/components include/kqt3d/components/opengl include/kqt3d/models)
+target_include_directories(kqt3d PRIVATE include/kqt3d include/kqt3d/interfaces include/kqt3d/components include/kqt3d/components/opengl include/kqt3d/models include/kqt3d/modelimporters)
 
 if(WIN32)
     set(GRAPHIC_API opengl32)
 else()
-    message(FATAL_ERROR "platform: platform not support")
+    # message(FATAL_ERROR "platform: platform not support")
 endif()
 
 target_link_libraries(kqt3d
@@ -44,4 +60,5 @@ target_link_libraries(kqt3d
     Qt6::OpenGL
     ${GRAPHIC_API}
     kqtcore3d
+    assimp
 )

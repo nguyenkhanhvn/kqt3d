@@ -18,7 +18,8 @@ public:
     virtual void destroy() override;
     virtual void beforeRender() override;
 
-    QSharedPointer<kqtcore3d::ShaderProgram> program();
+    QSharedPointer<kqt3d::BasicPerspectiveCamera> camera() const;
+    QSharedPointer<kqtcore3d::ShaderProgram> program() const;
 
 public:
     QColor clearColor = "white";

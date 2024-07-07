@@ -12,7 +12,7 @@ public:
                            float verticalAngle = 45, float aspectRatio = 1.0, float nearPlane = 0.01, float farPlane = 1000, QMatrix4x4 projection = QMatrix4x4());
 
 
-    void resize(QRectF newSize);
+    void resize(float width, float height);
     void inputControl(int key);
     void zoom(float delta);
 };

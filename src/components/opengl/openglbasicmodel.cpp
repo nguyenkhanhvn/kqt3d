@@ -3,8 +3,13 @@
 
 namespace kqt3d {
 
-OpenGLBasicModel::OpenGLBasicModel(const QVector<QSharedPointer<kqtcore3d::BaseMesh> > &meshes) :
-    kqtcore3d::OpenGLModel(meshes)
+OpenGLBasicModel::OpenGLBasicModel(const QVector<QSharedPointer<kqtcore3d::BaseMesh> > &meshes, QSharedPointer<kqtcore3d::IModelImporter> importer) :
+    kqtcore3d::OpenGLModel(meshes, importer)
+{
+}
+
+OpenGLBasicModel::OpenGLBasicModel(QSharedPointer<kqtcore3d::IModelImporter> importer) :
+    kqtcore3d::OpenGLModel(QVector<QSharedPointer<kqtcore3d::BaseMesh>>(), importer)
 {
 }
 

@@ -21,12 +21,19 @@ void OpenGLBasicFrameRenderCallback::destroy()
 void OpenGLBasicFrameRenderCallback::beforeRender()
 {
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
     glClearColor(clearColor.redF(), clearColor.greenF(), clearColor.blueF(), clearColor.alphaF());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-QSharedPointer<kqtcore3d::ShaderProgram> OpenGLBasicFrameRenderCallback::program()
+QSharedPointer<kqt3d::BasicPerspectiveCamera> OpenGLBasicFrameRenderCallback::camera() const
+{
+    return m_camera;
+}
+
+QSharedPointer<kqtcore3d::ShaderProgram> OpenGLBasicFrameRenderCallback::program() const
 {
     return m_program;
 }

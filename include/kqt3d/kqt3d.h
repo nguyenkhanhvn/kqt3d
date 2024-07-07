@@ -3,6 +3,7 @@
 
 #include "kqt3dutils.h"
 #include "interfaces/iframerendercallback.h"
+#include "modelimporters/assimpmodelimporter.h"
 #include "components/framebufferobject.h"
 #include "components/basicperspectivecamera.h"
 #include "components/opengl/openglbasicframe3d.h"
