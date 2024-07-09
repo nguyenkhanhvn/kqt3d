@@ -68,6 +68,24 @@ kqtcore3d::ModelImporterData AssimpModelImporter::loadModelFromMemory(const QByt
     return m_lastData;
 }
 
+kqtcore3d::ModelImporterData AssimpModelImporter::getLoadedModel()
+{
+    return m_lastData;
+}
+
+kqtcore3d::ModelImporterData AssimpModelImporter::cloneLoadedModel()
+{
+    kqtcore3d::ModelImporterData cloneData;
+    cloneData.isLoaded = m_lastData.isLoaded;
+    for(auto mesh : m_lastData.meshes) {
+        cloneData.meshes.append(QSharedPointer<kqt3d::OpenGLBasicMesh>::create(
+            QSharedPointer<kqt3d::BasicVertices>::create(mesh->vertices().staticCast<kqt3d::BasicVertices>()->getVertices()),
+            QSharedPointer<BasicIndices>::create(mesh->indices().staticCast<kqt3d::BasicIndices>()->getIndices()),
+            mesh->getTransformationMatrix()));
+    }
+    return cloneData;
+}
+
 uint AssimpModelImporter::getFlags() const
 {
     return m_flags;
@@ -107,9 +125,10 @@ void AssimpModelImporter::setDefaultColor(QVector4D defaultColor)
     }
 }
 
-kqtcore3d::ModelImporterData AssimpModelImporter::getLastData() const
+void AssimpModelImporter::setDefaultColor(QColor defaultColor)
 {
-    return m_lastData;
+    QVector4D defaultColorVector = QVector4D(defaultColor.redF(), defaultColor.greenF(), defaultColor.blueF(), defaultColor.alphaF());
+    setDefaultColor(defaultColorVector);
 }
 
 void AssimpModelImporter::processScene(const aiScene *scene, QMatrix4x4 matrix)

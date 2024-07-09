@@ -17,6 +17,9 @@ public:
 
     virtual kqtcore3d::ModelImporterData loadModel(const QString &filename, QMatrix4x4 matrix = QMatrix4x4()) override;
     virtual kqtcore3d::ModelImporterData loadModelFromMemory(const QByteArray &data, QMatrix4x4 matrix = QMatrix4x4()) override;
+    virtual kqtcore3d::ModelImporterData getLoadedModel() override;
+
+    kqtcore3d::ModelImporterData cloneLoadedModel();
 
     uint getFlags() const;
     void setFlags(uint flags);
@@ -26,8 +29,7 @@ public:
 
     QVector4D getDefaultColor() const;
     void setDefaultColor(QVector4D defaultColor);
-
-    kqtcore3d::ModelImporterData getLastData() const;
+    void setDefaultColor(QColor defaultColor);
 
 private:
     void processScene(const aiScene *scene, QMatrix4x4 matrix);
